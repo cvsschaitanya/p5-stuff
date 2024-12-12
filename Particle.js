@@ -1,6 +1,7 @@
 function Particle(id, mass, initState) {
     this.id = id;
     this.mass = mass;
+    this.color = [random(0xdf), random(0xdf), random(0xdf)]
     this.getRadius = () => this.mass / 2;
     this.pos = createVector(0, 0);
     this.vel = createVector(0, 0);
@@ -18,34 +19,24 @@ function Particle(id, mass, initState) {
 
     this.applyForce = function(force) {
         const invmass = 1 / this.mass;
-        const acc = force.mult(invmass);
+        const acc = force.copy().mult(invmass);
         this.acc.add(acc);
     }
 
     this.show = function() {
-        // strokeWeight(this.mass);
-        // point(this.pos.x, this.pos.y);
-        fill(0);
+        const [R, G, B] = this.color;
+        stroke(R, G, B);
+        fill(R, G, B);
         circle(this.pos.x, this.pos.y, this.mass);
     }
 
     this.collideWith = function(normal) {
-        const COR = 0.9;
-        // const COF = 0.1;
-
-        // let parellel = normal.copy();
-        // parellel.rotate(PI/2);
-
-        // if (parellel.angleBetween(parellel, this.vel) < PI/2) {
-        //     parellel.mult(-1);
-        // }
-        // this.applyForce(parellel.copy().mult(this.mass * COF * this.vel.mag))
+        const COR = 0.99;
 
         createVector(0,0).an
 
         this.vel.reflect(normal);
         this.vel.mult(COR);
-        // console.log(this.vel.x, this.vel.y);
     }
 
     this.collideBox = function(left, right, top, bottom) {
