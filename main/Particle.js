@@ -17,23 +17,26 @@ function Particle(id, mass, initState) {
         this.acc.mult(0);
     }
 
-    this.applyForce = function(force) {
+    this.applyForce = function (force) {
         const invmass = 1 / this.mass;
         const acc = force.copy().mult(invmass);
         this.acc.add(acc);
     }
 
+    this.applyAcc = function (acc) {
+        this.acc.add(acc);
+    }
+
     this.show = function() {
+        const alpha = 128;
         const [R, G, B] = this.color;
-        stroke(R, G, B);
-        fill(R, G, B);
+        stroke(R, G, B, alpha);
+        fill(R, G, B, alpha);
         circle(this.pos.x, this.pos.y, this.mass);
     }
 
     this.collideWith = function(normal) {
-        const COR = 0.99;
-
-        createVector(0,0).an
+        const COR = 0.9999;
 
         this.vel.reflect(normal);
         this.vel.mult(COR);
