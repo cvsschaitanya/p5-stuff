@@ -1,7 +1,7 @@
 const particles = [];
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    const n = 100;
+    const n = 250;
     for (let i = 1; i <= n; i++) {
         particles.push(new Particle(i, random(5, 50), {
             pos: createVector(random(width), random(height/2)),
