@@ -1,10 +1,10 @@
 const particles = [];
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(windowWidth, windowHeight);
     const n = 100;
     for (let i = 1; i <= n; i++) {
-        particles.push(new Particle(i, 5, {
-            pos: createVector(random(width), random(height)),
+        particles.push(new Particle(i, random(5, 50), {
+            pos: createVector(random(width), random(height/2)),
             vel: p5.Vector.random2D(),
             acc: p5.Vector.random2D(),
         }));
@@ -23,7 +23,7 @@ function draw() {
     particles.forEach(p => {
         p.show();
         p.update();
-        p.applyForce(gravity);
+        p.applyAcc(gravity);
         p.collideBox(0 + (p.getRadius() + wallThickness), width - (p.getRadius() + wallThickness), 0 + (p.getRadius() + wallThickness), height - (p.getRadius() + wallThickness),);
     });
 
