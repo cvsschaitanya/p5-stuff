@@ -36,7 +36,7 @@ function Particle(id, mass, initState) {
     }
 
     this.collideWith = function(normal) {
-        const COR = 0.9999;
+        const COR = 0.99;
 
         this.vel.reflect(normal);
         this.vel.mult(COR);
